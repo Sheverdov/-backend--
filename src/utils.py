@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 
-def working_file(fail_name):
+def loadind_file(fail_name):
     """"""
     with open(fail_name) as load_file:
         return json.load(load_file)
@@ -41,7 +41,7 @@ def valuda(operations):
 
 
 def get_main(number_operations=5):
-    working = working_file("operations.json")
+    working = loadind_file('operations.json')
     executed = examination(working)
     date = sort_by_date(executed)
     for item in date:
@@ -53,6 +53,3 @@ def get_main(number_operations=5):
         print(change_map(item["to"]))
         print(valuda(item))
         number_operations -= 1
-
-
-get_main()
