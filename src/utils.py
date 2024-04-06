@@ -2,9 +2,9 @@ import json
 from datetime import datetime
 
 
-def working_with_a_file(fail_nam):
+def working_file(fail_nam):
     """"""
-    with open(fail_nam) as file:
+    with open(fail_nam, "r") as file:
         return json.load(file)
 
 
@@ -34,6 +34,25 @@ def change_map(m):
         card_name = " ".join(number[:-1])
         return card_name + ' ' + number[-1][:4] + ' ' + number[-1][4:6] + '** ****' + number[-1][-4:]
 
+
 def valuda(operations):
     """"""
     return f"{operations["operationAmount"]["amount"]} {operations["operationAmount"]["currency"]["name"]}"
+
+
+def get_main(number_operations=5):
+    working = working_file("operations.json")
+    executed = examination(working)
+    date = sort_by_date(executed)
+    for item in date:
+        if number_operations == 0:
+            break
+        print(change_date(item["date"]), item["description"])
+        if item["description"] != "Открытие вклада":
+            print(change_map(item["from"]) + " -> ", end="")
+        print(change_map(item["to"]))
+        print(valuda(item))
+        number_operations -= 1
+
+
+get_main()
