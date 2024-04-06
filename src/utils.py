@@ -2,21 +2,21 @@ import json
 from datetime import datetime
 
 
-def working_file(fail_nam):
+def working_file(fail_name):
     """"""
-    with open(fail_nam, "r") as file:
-        return json.load(file)
+    with open(fail_name) as load_file:
+        return json.load(load_file)
 
 
-def examination(file):
+def examination(load_file):
     """"""
-    item = list(filter(lambda x: len(x) and x["state"] == "EXECUTED", file))
-    return item
+    load_item = list(filter(lambda x: len(x) and x["state"] == "EXECUTED", load_file))
+    return load_item
 
 
-def sort_by_date(item):
+def sort_by_date(it):
     """"""
-    list_by_date = sorted(item, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%dT%H:%M:%S.%f'), reverse=True)
+    list_by_date = sorted(it, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%dT%H:%M:%S.%f'), reverse=True)
     return list_by_date
 
 
