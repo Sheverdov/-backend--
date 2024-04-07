@@ -32,7 +32,7 @@ def change_map(m):
         return 'Счет **' + m[-4:]
     else:
         card_name = " ".join(number[:-1])
-        return card_name + ' ' + number[-1][:4] + ' ' + number[-1][4:6] + '** ****' + number[-1][-4:]
+        return card_name + ' ' + number[-1][:4] + ' ' + number[-1][4:6] + '** **** ' + number[-1][-4:]
 
 
 def valuda(operations):
@@ -42,9 +42,7 @@ def valuda(operations):
 
 def get_main(number_operations=5):
     """Собираем все функции и выводим 5 последных опираций"""
-    working = loading_file("operations.json")
-    executed = examination(working)
-    date = sort_by_date(executed)
+    date = sort_by_date(examination(loading_file("operations.json")))
     for item in date:
         if number_operations == 0:
             break
